@@ -41,7 +41,7 @@ module Retort
       end
 
       def load(url)
-        Service.call "load_start", url
+        Service.call "load_start_verbose", url
       end
 
       def action(name, info_hash)
@@ -70,7 +70,7 @@ module Retort
     end
 
     def status
-      return "complete" if @complete.truth
+      'complete' if @complete.truth
     end
 
     def actions
@@ -88,11 +88,13 @@ module Retort
 
       actions
     end
+
     def files
       File.all(self.info_hash)
     end
+
     def commit_priorities
-      Service.call("d.update_priorities",self.info_hash)
+      Service.call('d.update_priorities', self.info_hash)
     end
 
   end
